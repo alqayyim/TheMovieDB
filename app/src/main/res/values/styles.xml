@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ProgressDialogStyle" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="App" />
+
+    <style name="App.RecyclerView">
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+    <style name="App.RecyclerView.Movies">
+        <item name="layoutManager">androidx.recyclerview.widget.GridLayoutManager</item>
+        <item name="spanCount">2</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="App.Title">
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="App.Subtitle">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/subtitle_color</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+    </style>
+
+    <style name="App.Text">
+        <item name="android:textColor">@color/regular_text_color</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="App.Text.XSmall">
+        <item name="android:textSize">@dimen/text_size_x_small</item>
+        <item name="android:textColor">@color/light_text_color</item>
+    </style>
+
+    <style name="App.Text.Small">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">#363636</item>
+    </style>
+
+    <style name="App.Text.Medium">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/light_text_color</item>
+    </style>
+
+    <style name="App.Text.Large">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="App.Text.Medium.Bold">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="App.Text.Search">
+        <item name="android:textColor">@color/darker_gray</item>
+        <item name="android:textColorHint">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+</resources>
