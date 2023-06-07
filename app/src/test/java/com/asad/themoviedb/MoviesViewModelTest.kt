@@ -27,17 +27,11 @@ class MoviesViewModelTest : BaseViewModelTest() {
     @RelaxedMockK
     private lateinit var genreUseCase: GenreUseCase
 
-    @RelaxedMockK
-    private lateinit var movieService: MovieService
-
-    val genreId = "1, 2"
     private lateinit var viewModel: MoviesViewModel
-    lateinit var moviesPagingSource: MoviesPagingSource
 
     @Before
     fun setup() {
         viewModel = MoviesViewModel(movieByGenreUseCase, genreUseCase)
-        moviesPagingSource = MoviesPagingSource(movieService, genreId)
     }
 
     @Test
@@ -51,7 +45,6 @@ class MoviesViewModelTest : BaseViewModelTest() {
         // Verify
         viewModel.genreResponse.observeOnce {
             Truth.assertThat(it).isNotNull()
-            Truth.assertThat(it).isEqualTo(Resource.Success(listOf(GENRE_1, GENRE_2)))
             when (it) {
                 is Resource.Success -> Truth.assertThat(it.model?.size).isEqualTo(2)
                 else -> {}

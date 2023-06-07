@@ -1,14 +1,9 @@
 object Dependencies {
 
-    const val timber = "com.jakewharton.timber:timber:5.0.1"
-    const val permissionX = "com.guolindev.permissionx:permissionx:1.6.4"
-    const val shimmer = "com.facebook.shimmer:shimmer:0.5.0"
-    const val sneaker = "com.irozon.sneaker:sneaker:2.0.0"
-
     object AndroidX {
         const val core = "androidx.core:core-ktx:1.7.0"
         const val appCompat =
-            "androidx.appcompat:appcompat:1.4.2"
+            "androidx.appcompat:appcompat:1.6.1"
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:2.1.4"
         const val workRuntime = "androidx.work:work-runtime-ktx:2.7.1"
@@ -58,7 +53,6 @@ object Dependencies {
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesVersion}"
         const val mockK = "io.mockk:mockk:${Versions.mockkVersion}"
         const val truth = "com.google.truth:truth:${Versions.truthVersion}"
-        const val turbine = "app.cash.turbine:turbine:${Versions.turbineVersion}"
         const val archTesting =
             "androidx.arch.core:core-testing:${Versions.archTestingVersion}"
         const val koinTest = "io.insert-koin:koin-test:${Versions.koinTestVersion}"

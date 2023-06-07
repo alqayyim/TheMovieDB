@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-
     with(Dependencies.Module) {
         implementation(project(core))
         implementation(project(domain))
@@ -46,13 +45,14 @@ dependencies {
         implementation(gson)
         implementation(material)
     }
-    implementation(Dependencies.AndroidX.paging)
-    implementation(Dependencies.SquareUp.retrofit2Converter)
-    implementation(Dependencies.SquareUp.retrofit2)
-    implementation(Dependencies.SquareUp.okhttp3Logging)
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    with(Dependencies.AndroidX){
+        implementation(paging)
+        implementation(core)
+        implementation(appCompat)
+    }
+    with(Dependencies.SquareUp) {
+        implementation(retrofit2Converter)
+        implementation(retrofit2)
+        implementation(okhttp3Logging)
+    }
 }

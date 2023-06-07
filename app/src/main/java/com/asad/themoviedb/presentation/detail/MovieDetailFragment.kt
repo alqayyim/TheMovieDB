@@ -27,7 +27,6 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
     private val binding by viewBinding(FragmentMovieDetailBinding::bind)
     private val viewModel: MovieDetailViewModel by viewModel()

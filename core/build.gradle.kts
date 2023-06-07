@@ -38,13 +38,14 @@ dependencies {
         implementation(glide)
         annotationProcessor(compiler)
     }
-    implementation(Dependencies.AndroidX.navFragment)
-    implementation(Dependencies.Google.gson)
+    with(Dependencies.AndroidX) {
+        implementation(navFragment)
+        implementation(core)
+        implementation(appCompat)
+    }
+    with(Dependencies.Google) {
+        implementation(material)
+        implementation(gson)
+    }
     implementation(Dependencies.SquareUp.retrofit2)
-    implementation(Dependencies.AndroidX.core)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
