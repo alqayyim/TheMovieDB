@@ -1,6 +1,5 @@
 package com.asad.data.mapper
 
-import android.util.Log
 import com.asad.core.network.Mapper
 import com.asad.data.model.TrailerResponse
 import com.asad.domain.model.Trailer

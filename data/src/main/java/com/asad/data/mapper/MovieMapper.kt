@@ -3,8 +3,10 @@ package com.asad.data.mapper
 import com.asad.core.network.Mapper
 import com.asad.data.model.MovieResponse
 import com.asad.data.model.MovieResponseItem
+import com.asad.data.model.ReviewResponseItem
 import com.asad.domain.model.Movie
 import com.asad.domain.model.MovieModel
+import com.asad.domain.model.Review
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.Date
@@ -74,4 +76,5 @@ class MovieMapper : Mapper<MovieResponse, MovieModel> {
             )
         }
     }
+
 }

@@ -18,6 +18,11 @@
         <item name="android:padding">@dimen/spacing_normal</item>
     </style>
 
+    <style name="App.RecyclerView.Reviews">
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+    </style>
+
     <style name="App.Title">
         <item name="android:textSize">@dimen/title_size</item>
         <item name="android:textColor">@color/title_color</item>
@@ -63,6 +68,12 @@
         <item name="android:textColor">@color/darker_gray</item>
         <item name="android:textColorHint">@color/dark_gray</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="MyToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/blue_700</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/white</item>
     </style>
 
 </resources>

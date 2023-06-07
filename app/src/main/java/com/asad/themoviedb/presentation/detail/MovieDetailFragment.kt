@@ -1,19 +1,20 @@
 package com.asad.themoviedb.presentation.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asad.core.BaseView
+import com.asad.core.data.Resource
 import com.asad.core.extension.loadImage
 import com.asad.core.extension.px
 import com.asad.themoviedb.R
 import com.asad.themoviedb.databinding.FragmentMovieDetailBinding
 import com.asad.themoviedb.presentation.detail.adapter.MovieGenresAdapter
+import com.asad.themoviedb.presentation.detail.adapter.TrailerAdapter
+import com.asad.themoviedb.presentation.movies.MoviesFragmentDirections
 import com.asad.themoviedb.presentation.utils.HorizontalSpaceItemDecoration
 import com.asad.themoviedb.presentation.utils.VerticalSpaceItemDecoration
 import com.asad.themoviedb.presentation.utils.delegate.viewBinding
@@ -21,8 +22,6 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.asad.core.data.Resource
-import com.asad.themoviedb.presentation.detail.adapter.TrailerAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
@@ -48,6 +47,10 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
         setupTrailerAdapter()
         viewModel.getDetailMovie(movieDetailArgs.movieId)
         viewModel.getTrailer(movieDetailArgs.movieId)
+        binding.tvSeeReviews.setOnClickListener {
+            val direction = MovieDetailFragmentDirections.reviewAction(movieDetailArgs.movieId)
+            findNavController().navigate(direction)
+        }
         binding.backIv.setOnClickListener {
             findNavController().popBackStack()
         }
