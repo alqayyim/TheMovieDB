@@ -4,13 +4,10 @@ import com.asad.core.extension.getPosterUrl
 import com.asad.core.network.Mapper
 import com.asad.data.model.MovieResponse
 import com.asad.data.model.MovieResponseItem
-import com.asad.data.model.ReviewResponseItem
 import com.asad.domain.model.Movie
 import com.asad.domain.model.MovieModel
-import com.asad.domain.model.Review
 import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Date
+import java.util.*
 
 class MovieMapper : Mapper<MovieResponse, MovieModel> {
 

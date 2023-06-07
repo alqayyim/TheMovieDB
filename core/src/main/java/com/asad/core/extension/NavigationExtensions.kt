@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 
 /**
@@ -19,21 +20,21 @@ fun navigateTo(fragment: Fragment, bundle: Bundle, @IdRes resId: Int){
     }
 }
 
-fun navigateTo(fragment: Fragment, @IdRes resId: Int){
+fun Fragment.navigateTo(direction: NavDirections){
     try {
-        fragment.findNavController().navigate(resId)
+        this.findNavController().navigate(direction)
     } catch (e: IllegalArgumentException) {
         // User probably tapping 2 navigation at once!
-        Log.e(fragment::class.java.simpleName, "Can't open 2 links at once!")
+        Log.e(this::class.java.simpleName, "Can't open 2 links at once!")
     }
 }
 
-fun navigateBack(fragment: Fragment){
+fun Fragment.navigateBack(){
     try {
-        fragment.findNavController().popBackStack()
+        this.findNavController().popBackStack()
     } catch (e: IllegalArgumentException) {
         // User probably tapping 2 navigation at once!
-        Log.e(fragment::class.java.simpleName, "Can't open 2 links at once!")
+        Log.e(this::class.java.simpleName, "Can't open 2 links at once!")
     }
 }
 
@@ -43,25 +44,5 @@ fun navigateUp(fragment: Fragment){
     } catch (e: IllegalArgumentException) {
         // User probably tapping 2 navigation at once!
         Log.e(fragment::class.java.simpleName, "Can't open 2 links at once!")
-    }
-}
-
-fun <T : Any> Fragment.setBackStackData(key: String, data : T, doBack : Boolean = true) {
-    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, data)
-    if(doBack) findNavController().popBackStack()
-}
-
-fun <T : Any> Fragment.removeBackstackData(key: String) {
-    findNavController().currentBackStackEntry?.savedStateHandle?.remove<T>(key)
-}
-
-fun Fragment.clearBackstateData(key: String) {
-    findNavController().previousBackStackEntry?.savedStateHandle?.clearSavedStateProvider(key)
-}
-
-
-fun <T : Any> Fragment.getBackStackData(key: String, result: (T) -> (Unit)) {
-    findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<T>(key)?.observe(viewLifecycleOwner) {
-        result(it)
     }
 }

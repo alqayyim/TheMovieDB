@@ -1,5 +1,7 @@
 package com.asad.data.mapper
 
+import com.asad.core.extension.getThumbnailUrl
+import com.asad.core.extension.getYoutubeUrl
 import com.asad.core.network.Mapper
 import com.asad.data.model.TrailerResponse
 import com.asad.domain.model.Trailer
@@ -14,8 +16,8 @@ class TrailerMapper : Mapper<TrailerResponse, TrailerModel> {
                 results = results.filter { it.site.equals("youtube", true) }.map {
                     Trailer(
                         it.name,
-                        "https://www.${it.site}.com/watch?v=${it.key}",
-                        "https://img.youtube.com/vi/${it.key}/0.jpg"
+                        it.key.getYoutubeUrl(),
+                        it.key.getThumbnailUrl()
                     )
                 },
             )

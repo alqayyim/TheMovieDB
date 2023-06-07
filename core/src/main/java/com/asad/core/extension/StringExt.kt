@@ -8,3 +8,12 @@ fun String.getAvatarUrl(): String {
 fun String.getPosterUrl(): String {
     return "https://image.tmdb.org/t/p/original$this"
 }
+
+fun String.getThumbnailUrl(): String {
+    return "https://img.youtube.com/vi/$this/0.jpg"
+}
+
+fun String.getYoutubeUrl(): String {
+    return "https://www.youtube.com/watch?v=$this"
+}
+

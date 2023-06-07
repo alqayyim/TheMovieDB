@@ -1,5 +1,6 @@
 package com.asad.data.mapper
 
+import com.asad.core.extension.getPosterUrl
 import com.asad.core.network.Mapper
 import com.asad.data.model.MovieDetailResponse
 import com.asad.domain.model.MovieDetailModel
@@ -16,8 +17,8 @@ class MovieDetailMapper :
                 popularity,
                 video,
                 adult,
-                posterPath?.let { "https://image.tmdb.org/t/p/original$it" },
-                backdropPath?.let { "https://image.tmdb.org/t/p/original$it" },
+                posterPath?.getPosterUrl(),
+                backdropPath?.getPosterUrl(),
                 genres,
                 title,
                 overview,

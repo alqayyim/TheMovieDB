@@ -6,13 +6,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asad.core.BaseView
 import com.asad.core.FullScreenProgressDialog
 import com.asad.core.data.Resource
 import com.asad.core.extension.loadImage
+import com.asad.core.extension.navigateBack
+import com.asad.core.extension.navigateTo
 import com.asad.core.extension.px
 import com.asad.themoviedb.R
 import com.asad.themoviedb.databinding.FragmentMovieDetailBinding
@@ -52,10 +53,10 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
         viewModel.getTrailer(movieDetailArgs.movieId)
         binding.tvSeeReviews.setOnClickListener {
             val direction = MovieDetailFragmentDirections.reviewAction(movieDetailArgs.movieId)
-            findNavController().navigate(direction)
+            navigateTo(direction)
         }
         binding.backIv.setOnClickListener {
-            findNavController().popBackStack()
+            navigateBack()
         }
     }
 

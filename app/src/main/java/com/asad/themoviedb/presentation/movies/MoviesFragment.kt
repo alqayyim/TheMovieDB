@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.asad.core.BaseView
 import com.asad.core.data.Resource
+import com.asad.core.extension.navigateTo
 import com.asad.core.extension.px
 import com.asad.domain.model.MovieGenre
 import com.asad.themoviedb.R
@@ -34,7 +34,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), BaseView {
     private val movieAdapter by lazy {
         MovieAdapter(onClick = { movieID ->
             val direction = MoviesFragmentDirections.movieDetailAction(movieID)
-            findNavController().navigate(direction)
+            navigateTo(direction)
         })
     }
 

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asad.core.BaseView
 import com.asad.core.FullScreenProgressDialog
+import com.asad.core.extension.navigateBack
 import com.asad.themoviedb.R
 import com.asad.themoviedb.databinding.FragmentReviewsBinding
 import com.asad.themoviedb.presentation.utils.delegate.viewBinding
@@ -29,7 +30,7 @@ class ReviewsFragment : Fragment(R.layout.fragment_reviews), BaseView {
         setupAdapter()
         observeMovieResponse()
         observeLoading()
-        binding.toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        binding.toolbar.setNavigationOnClickListener { navigateBack() }
         viewModel.getReviews(reviewFragmentArgs.movieId)
     }
 
