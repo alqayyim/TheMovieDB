@@ -5,8 +5,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.asad.core.data.Resource
-import com.asad.core.extension.buildWrapper
+import com.asad.core.extension.catchError
 import com.asad.core.extension.mapTo
+import com.asad.core.extension.onProgress
 import com.asad.data.ReviewsPagingSource
 import com.asad.data.mapper.MovieDetailMapper
 import com.asad.data.mapper.ReviewMapper
@@ -31,14 +32,14 @@ class MovieDetailRepositoryImpl(
         return flow {
             val response = service.getMovieDetail(movieId)
             emit(response.mapTo(movieDetailMapper))
-        }.buildWrapper()
+        }.onProgress().catchError()
     }
 
     override suspend fun getTrailer(movieId: Int?): Flow<Resource<TrailerModel>> {
         return flow {
             val response = service.getTrailer(movieId)
             emit(response.mapTo(trailerMapper))
-        }.buildWrapper()
+        }.onProgress().catchError()
     }
 
     override suspend fun getReviews(movieId: Int?): Flow<PagingData<Review>> {

@@ -9,7 +9,7 @@ import com.asad.core.extension.loadImage
 import com.asad.domain.model.Trailer
 import com.asad.themoviedb.databinding.ItemTrailerBinding
 
-class TrailerAdapter(private val onClick: (Int) -> Unit) :
+class TrailerAdapter(private val onClick: (String) -> Unit) :
     ListAdapter<Trailer, TrailerAdapter.TrailersViewHolder>(TrailerDiffCallBack) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrailersViewHolder {
@@ -19,8 +19,11 @@ class TrailerAdapter(private val onClick: (Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: TrailersViewHolder, position: Int) {
-        getItem(position)?.let { movie ->
-            holder.bind(movie)
+        getItem(position)?.let { trailer ->
+            holder.bind(trailer)
+            holder.itemView.setOnClickListener {
+                onClick.invoke(trailer.urlVideo)
+            }
         }
     }
 

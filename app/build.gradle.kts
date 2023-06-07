@@ -87,4 +87,13 @@ dependencies {
         implementation(retrofit2Converter)
         implementation(okhttp3Logging)
     }
+    with(Dependencies.Test) {
+        testImplementation(junit4)
+        testImplementation(coroutinesTest)
+        testImplementation(archTesting)
+        testImplementation(truth)
+        testImplementation(turbine)
+        testImplementation(mockK)
+        testImplementation(koinTest)
+    }
 }

@@ -131,13 +131,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:ellipsize="end"
+            android:textColor="@color/blue_200"
             android:maxLines="8"
-            android:text="Trailer"
+            android:text="TRAILER"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_summary"
-            tools:text="Trailer" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_summary" />
 
 
         <androidx.recyclerview.widget.RecyclerView

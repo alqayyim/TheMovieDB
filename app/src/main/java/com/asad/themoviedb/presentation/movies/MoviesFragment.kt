@@ -69,7 +69,8 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), BaseView {
                 }
             }
             genreAdapter.notifyItemChanged(selectedIndex)
-            viewModel.getMoviesByGenre(genreList.filter { it.isSelected }.toString())
+            val selectedGenre = genreList.filter { it.isSelected }.joinToString { "${it.id}" }
+            viewModel.getMoviesByGenre(selectedGenre)
         }
         binding.rvMovies.run {
             layoutManager = GridLayoutManager(requireContext(), 2)

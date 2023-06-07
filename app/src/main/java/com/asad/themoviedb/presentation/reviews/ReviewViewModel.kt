@@ -17,16 +17,18 @@ class ReviewViewModel(private val reviewUseCase: ReviewUseCase) : ViewModel() {
 
     private val _reviewResponse = MutableLiveData<PagingData<Review>>()
     val reviewResponse : LiveData<PagingData<Review>> = _reviewResponse
-    val loading = MutableLiveData(false)
+
+    private val _loading = MutableLiveData(false)
+    val loading : LiveData<Boolean> = _loading
 
     fun getReviews(movieId: Int) {
         viewModelScope.launch {
-            loading.value = true
+            _loading.value = true
             withContext(Dispatchers.IO) {
                 reviewUseCase(movieId).cachedIn(viewModelScope)
             }.collectLatest {
                 _reviewResponse.value = it
-                loading.value = false
+                _loading.value = false
             }
         }
     }

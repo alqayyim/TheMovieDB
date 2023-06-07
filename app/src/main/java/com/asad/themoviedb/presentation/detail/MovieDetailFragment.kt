@@ -1,12 +1,17 @@
 package com.asad.themoviedb.presentation.detail
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asad.core.BaseView
+import com.asad.core.FullScreenProgressDialog
 import com.asad.core.data.Resource
 import com.asad.core.extension.loadImage
 import com.asad.core.extension.px
@@ -14,7 +19,6 @@ import com.asad.themoviedb.R
 import com.asad.themoviedb.databinding.FragmentMovieDetailBinding
 import com.asad.themoviedb.presentation.detail.adapter.MovieGenresAdapter
 import com.asad.themoviedb.presentation.detail.adapter.TrailerAdapter
-import com.asad.themoviedb.presentation.movies.MoviesFragmentDirections
 import com.asad.themoviedb.presentation.utils.HorizontalSpaceItemDecoration
 import com.asad.themoviedb.presentation.utils.VerticalSpaceItemDecoration
 import com.asad.themoviedb.presentation.utils.delegate.viewBinding
@@ -24,19 +28,25 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
     private val binding by viewBinding(FragmentMovieDetailBinding::bind)
     private val viewModel: MovieDetailViewModel by viewModel()
     private val movieDetailArgs: MovieDetailFragmentArgs by navArgs()
+    private val progressDialog by lazy { FullScreenProgressDialog(requireContext()) }
     private val trailerAdapter by lazy {
-        TrailerAdapter(onClick = { movieID ->
-            // do nothing yet
+        TrailerAdapter(onClick = { url ->
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            try {
+                requireActivity().startActivity(webIntent)
+            } catch (ex: ActivityNotFoundException) {
+                // do nothing
+            }
         })
     }
     private val movieGenresAdapter by lazy {
         MovieGenresAdapter()
     }
-    //private val progressDialog by lazy { FullScreenProgressDialog(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,8 +83,12 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
                             }
                         }
                     }
+                    is Resource.Loading -> {
+                        if (it.isLoading) progressDialog.show()
+                        else progressDialog.hide()
+                    }
                     is Resource.Error -> {
-                        // error
+                        progressDialog.hide()
                     }
                     else -> {}
                 }
@@ -90,9 +104,6 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
                         it.model?.results?.let{
                             trailerAdapter.submitList(it)
                         }
-                    }
-                    is Resource.Error -> {
-                        // error
                     }
                     else -> {}
                 }

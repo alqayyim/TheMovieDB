@@ -28,7 +28,7 @@ class MovieDetailViewModel(
 
     fun getDetailMovie(movieId: Int) {
         viewModelScope.launch {
-            movieDetailUseCase(movieId).onStart { loading.value = true }.collect {
+            movieDetailUseCase(movieId).collect {
                 _movieDetailResponse.value = it
                 loading.value = false
             }
@@ -37,7 +37,7 @@ class MovieDetailViewModel(
 
     fun getTrailer(movieId: Int) {
         viewModelScope.launch {
-            trailerUseCase(movieId).onStart { loading.value = true }.collect {
+            trailerUseCase(movieId).collect {
                 _trailerResponse.value = it
                 loading.value = false
             }

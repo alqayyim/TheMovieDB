@@ -16,16 +16,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/tvShowFragment"
-        android:name="com.asad.themoviedb.presentation.tvshow.TvShowFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_tv_show">
-        <action
-            android:id="@+id/movieDetailAction"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-
-    <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.asad.themoviedb.presentation.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"

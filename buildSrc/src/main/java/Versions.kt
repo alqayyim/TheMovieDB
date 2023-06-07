@@ -15,4 +15,11 @@ object Versions {
     const val flexBoxVersion = "3.0.0"
     const val materialVersion = "1.9.0"
     const val gson = "2.9.1"
+
+    const val mockkVersion = "1.13.3"
+    const val junit4Version = "4.13.2"
+    const val archTestingVersion = "2.1.0"
+    const val turbineVersion = "0.12.1"
+    const val truthVersion = "1.1.3"
+    const val koinTestVersion = "3.2.1"
 }

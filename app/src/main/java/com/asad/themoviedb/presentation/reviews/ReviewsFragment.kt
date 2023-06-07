@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.asad.core.BaseView
+import com.asad.core.FullScreenProgressDialog
 import com.asad.themoviedb.R
 import com.asad.themoviedb.databinding.FragmentReviewsBinding
 import com.asad.themoviedb.presentation.utils.delegate.viewBinding
@@ -21,12 +22,13 @@ class ReviewsFragment : Fragment(R.layout.fragment_reviews), BaseView {
     private val reviewAdapter by lazy {
         ReviewAdapter()
     }
-    //private val progressDialog by lazy { FullScreenProgressDialog(requireContext()) }
+    private val progressDialog by lazy { FullScreenProgressDialog(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         observeMovieResponse()
+        observeLoading()
         binding.toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
         viewModel.getReviews(reviewFragmentArgs.movieId)
     }
@@ -44,6 +46,15 @@ class ReviewsFragment : Fragment(R.layout.fragment_reviews), BaseView {
                 lifecycleScope.launch {
                     reviewAdapter.submitData(it)
                 }
+            }
+        }
+    }
+
+    private fun observeLoading() {
+        observeData(viewModel.loading) { result ->
+            result?.let {
+                if (it) progressDialog.show()
+                else progressDialog.hide()
             }
         }
     }

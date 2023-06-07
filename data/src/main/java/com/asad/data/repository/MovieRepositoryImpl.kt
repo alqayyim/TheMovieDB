@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.asad.core.data.Resource
-import com.asad.core.extension.buildWrapper
+import com.asad.core.extension.catchError
 import com.asad.core.extension.mapTo
 import com.asad.data.service.MovieService
 import com.asad.data.MoviesPagingSource
@@ -41,6 +41,6 @@ class MovieRepositoryImpl(
         return flow {
             val response = service.getGenres()
             emit(response.mapTo(genreMapper))
-        }.buildWrapper()
+        }.catchError()
     }
 }

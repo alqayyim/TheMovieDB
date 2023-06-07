@@ -17,16 +17,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navHostFragment: NavHostFragment
-    private val navController by lazy { navHostFragment.navController }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.mainNavHostFragment) as NavHostFragment
-
-        binding.bottomNavigation.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

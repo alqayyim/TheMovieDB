@@ -14,7 +14,7 @@ class MoviesPagingSource constructor(
         val page = params.key ?: 1
 
         return try {
-            repository.getMoviesByGenre(genres?.drop(1)?.dropLast(1) ?: "", page).run {
+            repository.getMoviesByGenre(genres ?: "", page).run {
                 LoadResult.Page(
                     data = this.results,
                     prevKey = if (page == 1) null else page - 1,
