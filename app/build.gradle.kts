@@ -1,3 +1,7 @@
+import java.io.File
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id(Plugins.androidApp)
     id(Plugins.kotlinAndroid)
@@ -14,6 +18,9 @@ android {
         targetSdk = Versions.targetSdk
         versionCode = Versions.versionCode
         versionName = Versions.versionName
+
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "API_KEY", getApiKey())
     }
 
     buildTypes {
@@ -82,4 +89,11 @@ dependencies {
         testImplementation(mockK)
         testImplementation(koinTest)
     }
+}
+
+fun getApiKey(): String {
+    val prop = Properties().apply {
+        load(FileInputStream(File(rootProject.rootDir, "./local.properties")))
+    }
+    return prop.getProperty("MOVIE_API_KEY")
 }

@@ -37,7 +37,7 @@ val networkModule = module {
 
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(get()))
             .client(get())
             .build()
@@ -59,7 +59,7 @@ fun provideAuthInterceptor(): Interceptor {
         val originalHttpUrl: HttpUrl = original.url
 
         val url: HttpUrl = originalHttpUrl.newBuilder()
-            .addQueryParameter("api_key", "6870f97f4f0bc99af7b83975a7ddcefe")
+            .addQueryParameter("api_key", BuildConfig.API_KEY)
             .build()
 
         val requestBuilder: Request.Builder = original.newBuilder()
