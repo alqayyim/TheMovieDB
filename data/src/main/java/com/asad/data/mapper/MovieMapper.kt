@@ -1,5 +1,6 @@
 package com.asad.data.mapper
 
+import com.asad.core.extension.getPosterUrl
 import com.asad.core.network.Mapper
 import com.asad.data.model.MovieResponse
 import com.asad.data.model.MovieResponseItem
@@ -23,9 +24,9 @@ class MovieMapper : Mapper<MovieResponse, MovieModel> {
                         it.id,
                         it.popularity,
                         it.video,
-                        it.posterPath?.let { "https://image.tmdb.org/t/p/original$it" },
+                        it.posterPath?.getPosterUrl(),
                         it.adult,
-                        it.backdropPath?.let { "https://image.tmdb.org/t/p/original$it" },
+                        it.backdropPath?.getPosterUrl(),
                         it.originalLanguage,
                         it.originalTitle,
                         it.title,
@@ -54,9 +55,9 @@ class MovieMapper : Mapper<MovieResponse, MovieModel> {
                 id,
                 popularity,
                 video,
-                posterPath?.let { "https://image.tmdb.org/t/p/original$it" },
+                posterPath?.getPosterUrl(),
                 adult,
-                backdropPath?.let { "https://image.tmdb.org/t/p/original$it" },
+                backdropPath?.getPosterUrl(),
                 originalLanguage,
                 originalTitle,
                 title,
