@@ -29,12 +29,7 @@ class MovieDetailViewModel(
     fun getDetailMovie(movieId: Int) {
         viewModelScope.launch {
             movieDetailUseCase(movieId).onStart { loading.value = true }.collect {
-                when (it) {
-                    is Resource.Success -> {
-                        _movieDetailResponse.value = it
-                    }
-                    else -> {}
-                }
+                _movieDetailResponse.value = it
                 loading.value = false
             }
         }
@@ -43,13 +38,7 @@ class MovieDetailViewModel(
     fun getTrailer(movieId: Int) {
         viewModelScope.launch {
             trailerUseCase(movieId).onStart { loading.value = true }.collect {
-                when (it) {
-                    is Resource.Success -> {
-                        _trailerResponse.value = it
-                    }
-                    is Resource.Error -> {}
-                    else -> {}
-                }
+                _trailerResponse.value = it
                 loading.value = false
             }
         }

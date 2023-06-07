@@ -43,7 +43,7 @@ class MovieDetailRepositoryImpl(
 
     override suspend fun getReviews(movieId: Int?): Flow<PagingData<Review>> {
         val moviePager = Pager(
-            config = PagingConfig(pageSize = 25, enablePlaceholders = false),
+            config = PagingConfig(pageSize = 10, enablePlaceholders = false),
             pagingSourceFactory = { ReviewsPagingSource(repository = service, movieId = movieId ?: 0) }
         ).flow
 

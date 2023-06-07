@@ -31,5 +31,5 @@ data class MovieDetailResponse(
     @SerializedName("vote_count")
     val voteCount: Int? = null,
     @SerializedName("release_date")
-    val releaseDate: String? = null,
+    val releaseDate: String? = null
 )

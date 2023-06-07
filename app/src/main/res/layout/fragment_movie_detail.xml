@@ -98,7 +98,7 @@
             app:constraint_referenced_ids="iv_rating,iv_poster" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvGenre"
+            android:id="@+id/rv_genre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -120,7 +120,7 @@
             android:maxLines="8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvGenre"
+            app:layout_constraintTop_toBottomOf="@+id/rv_genre"
             tools:text="Movie Detail" />
 
         <TextView

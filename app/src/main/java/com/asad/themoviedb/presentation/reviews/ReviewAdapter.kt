@@ -1,6 +1,5 @@
 package com.asad.themoviedb.presentation.reviews
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

@@ -18,7 +18,7 @@ class ReviewsPagingSource constructor(
                 LoadResult.Page(
                     data = this.results,
                     prevKey = if (page == 1) null else page - 1,
-                    nextKey = if (page == this.total) null else page + 1
+                    nextKey = if (results.isEmpty()) null else page + 1
                 )
             }
         } catch (e: Exception) {
