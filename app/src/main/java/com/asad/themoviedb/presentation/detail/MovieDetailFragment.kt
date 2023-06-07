@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -36,12 +35,7 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
     private val progressDialog by lazy { FullScreenProgressDialog(requireContext()) }
     private val trailerAdapter by lazy {
         TrailerAdapter(onClick = { url ->
-            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            try {
-                requireActivity().startActivity(webIntent)
-            } catch (ex: ActivityNotFoundException) {
-                // do nothing
-            }
+            openYoutubeIntent(url)
         })
     }
     private val movieGenresAdapter by lazy {
@@ -137,7 +131,12 @@ class MovieDetailFragment : Fragment(R.layout.fragment_movie_detail), BaseView {
         }
     }
 
-    /*private fun setProgressVisibility(isFetching: Boolean) {
-        if (isFetching) progressDialog.show() else progressDialog.hide()
-    }*/
+    private fun openYoutubeIntent(url: String) {
+        val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        try {
+            requireActivity().startActivity(webIntent)
+        } catch (ex: ActivityNotFoundException) {
+            // do nothing
+        }
+    }
 }
